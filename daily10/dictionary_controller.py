@@ -53,18 +53,38 @@ class DictionaryController(object):
         return json.dumps(output)
 
     def GET_INDEX(self):
-        #TODO
-        pass
+        output = {'result': 'success'}
+
+        output['entries'] = [{'key': entry, 'value': self.myd[entry]}for entry in self.myd.keys()]
+
+        return json.dumps(output)
 
     def POST_INDEX(self):
-        #TODO
-        pass
+        output = {'result': 'success'}
+
+        data_json = json.loads(cherrypy.request.body.read())
+
+        try:
+            key = data_json['key']
+            val = data_json['value']
+            self.add_entry(key, val)
+        except Exception as e:
+            output['result'] = 'failure'
+            output['message'] = str(e)
+        
+        return json.dumps(output)
 
     def DELETE_KEY(self, key):
-        #TODO
-        pass
+        output = {'result': 'success'}
+
+        # returns none if key not found
+        removed_key = self.myd.pop(str(key), None)
+        if removed_key == None:
+            output['result'] = 'failure'
+            output['message'] = 'key not found'
+        
+        return json.dumps(output)
 
     def DELETE_INDEX(self):
-        output = {'result': 'success'}
-        self.myd = dict()
-        return json.dumps(output)
+        self.myd.clear()
+        return json.dumps({'result': 'success'})
