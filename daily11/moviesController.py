@@ -3,7 +3,6 @@ import re, json
 from movies_library import _movie_database
 
 class MovieController(object):
-
         def __init__(self, mdb=None):
                 if mdb is None:
                         self.mdb = _movie_database()
@@ -13,7 +12,7 @@ class MovieController(object):
                 self.mdb.load_movies('movies.dat')
 
         def GET_KEY(self, movie_id):
-		'''when GET request for /movies/movie_id comes in, then we respond with json string'''
+                '''when GET request for /movies/movie_id comes in, then we respond with json string'''
                 output = {'result':'success'}
                 movie_id = int(movie_id)
 
@@ -34,7 +33,7 @@ class MovieController(object):
                 return json.dumps(output)
 
         def PUT_KEY(self, movie_id):
-		'''when PUT request for /movies/movie_id comes in, then we change that movie in the mdb'''
+                '''when PUT request for /movies/movie_id comes in, then we change that movie in the mdb'''
                 output = {'result':'success'}
                 movie_id = int(movie_id)
 
@@ -49,17 +48,17 @@ class MovieController(object):
                 return json.dumps(output)
 
         def DELETE_KEY(self, movie_id):
-		'''when DELETE for /movies/movie_id comes in, we remove just that movie from mdb'''
+                '''when DELETE for /movies/movie_id comes in, we remove just that movie from mdb'''
                 #TODO
                 pass
 
         def GET_INDEX(self):
-		'''when GET request for /movies/ comes in, we respond with all the movie information in a json str'''
+                '''when GET request for /movies/ comes in, we respond with all the movie information in a json str'''
                 output = {'result':'success'}
                 output['movies'] = []
 
                 try:
-			for mid in self.mdb.get_movies():
+                        for mid in self.mdb.get_movies():
                                 movie = self.mdb.get_movie(mid)
                                 dmovie = {'id':mid, 'title':movie[0],
                                                 'genres':movie[1]}
@@ -71,11 +70,11 @@ class MovieController(object):
                 return json.dumps(output)
 
         def POST_INDEX(self):
-		'''when POST for /movies/ comes in, we take title and genres from body of request, and respond with the new movie_id and more'''
+                '''when POST for /movies/ comes in, we take title and genres from body of request, and respond with the new movie_id and more'''
                 #TODO
                 pass
 
         def DELETE_INDEX(self):
-		'''when DELETE for /movies/ comes in, we remove each existing movie from mdb object'''
+                '''when DELETE for /movies/ comes in, we remove each existing movie from mdb object'''
                 #TODO
                 pass

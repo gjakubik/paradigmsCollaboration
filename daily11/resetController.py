@@ -12,7 +12,7 @@ class ResetController(object):
 
 
     def PUT_INDEX(self):
-	'''when PUT request comes in to /reset/ endpoint, then the movie database is reloaded'''
+        '''when PUT request comes in to /reset/ endpoint, then the movie database is reloaded'''
         output = {'result':'success'}
 
         data = json.loads(cherrypy.request.body.read().decode())
@@ -24,7 +24,7 @@ class ResetController(object):
         return json.dumps(output)
 
     def PUT_KEY(self, movie_id):
-	'''when PUT request comes in for /reset/movie_id endpoint, then that movie is reloaded and updated in mdb'''
+        '''when PUT request comes in for /reset/movie_id endpoint, then that movie is reloaded and updated in mdb'''
         output = {'result':'success'}
         mid = int(movie_id)
 
@@ -38,10 +38,8 @@ class ResetController(object):
             
             self.mdb.set_movie(mid, movie) #TODO remember to reset genre also
 
-
         except Exception as ex:
             output['result'] = 'error'
             output['message'] = str(ex)
 
         return json.dumps(output)
-

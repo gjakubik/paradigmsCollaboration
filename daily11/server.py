@@ -30,9 +30,9 @@ def start_service():
 
     conf = {
 	'global': {
-            'server.thread_pool': 5, # optional argument
-	    'server.socket_host': '<MACHINE NAME HERE>', # 
-	    'server.socket_port': <YOUR PORT NUM HERE>, #change port number to your assigned
+        'server.thread_pool': 5, # optional argument
+	    'server.socket_host': 'localhost', # 
+	    'server.socket_port': 51068, #change port number to your assigned
 	    },
 	'/': {
 	    'request.dispatch': dispatcher,
@@ -44,7 +44,6 @@ def start_service():
     cherrypy.quickstart(app)
 
 # end of start_service
-
 
 if __name__ == '__main__':
     start_service()
