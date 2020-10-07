@@ -5,6 +5,7 @@ class _movie_database:
         self.movie_names = dict()
         self.movie_genres = dict()
         self.movie_ratings = dict() # maybe remove these
+        self.lastMid = 0
 
        def load_movies(self, movie_file):
         f = open(movie_file)
@@ -18,6 +19,7 @@ class _movie_database:
                 self.movie_names[mid] = mname
                 self.movie_genres[mid] = mgenres
                 self.movie_ratings[mid] = dict()
+                self.lastMid += 1
                 #print(self.movie_names[mid])
         f.close()
 
@@ -29,7 +31,7 @@ class _movie_database:
                 mname = self.movie_names[mid]
                 mgenres = self.movie_genres[mid]
                 movie = list((mname, mgenres))
-        except Exception as ex:
+        except Exception:
                 movie = None
         return movie
 

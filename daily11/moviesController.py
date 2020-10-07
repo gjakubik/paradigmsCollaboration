@@ -49,7 +49,14 @@ class MovieController(object):
         def DELETE_KEY(self, movie_id):
                 '''when DELETE for /movies/movie_id comes in, we remove just that movie from mdb'''
                 output = {'result': 'success'}
-                pass
+
+                try:
+                        self.mdb.delete_movie(movie_id)
+                except Exception as ex:
+                        output['result'] = 'error'
+                        output['message'] = str(ex)
+
+                return json.dumps(output)
 
         def GET_INDEX(self):
                 '''when GET request for /movies/ comes in, we respond with all the movie information in a json str'''
@@ -70,8 +77,22 @@ class MovieController(object):
 
         def POST_INDEX(self):
                 '''when POST for /movies/ comes in, we take title and genres from body of request, and respond with the new movie_id and more'''
-                #TODO
-                pass
+                output = {'result': 'success'}
+
+                data = json.loads(cherrypy.request.body.read().decode('utf-8'))
+                try:
+                        movie = [data['title'], data['genres']]
+                        newMid = self.mdb.lastMid + 1
+                        self.mdb.lastMid += 1
+                        self.mdb.set_movie(newMid, movie)
+                except Exception as ex:
+                        output['result'] = 'error'
+                        output['message'] = str(ex)
+
+                output['id'] = str(newMid)
+                return json.dumps(output)
+
+                
 
         def DELETE_INDEX(self):
                 '''when DELETE for /movies/ comes in, we remove each existing movie from mdb object'''
