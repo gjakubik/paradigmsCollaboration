@@ -16,7 +16,6 @@ class MovieController(object):
                 output = {'result':'success'}
                 movie_id = int(movie_id)
 
-
                 try:
                         movie = self.mdb.get_movie(movie_id)
                         if movie is not None:
@@ -49,7 +48,7 @@ class MovieController(object):
 
         def DELETE_KEY(self, movie_id):
                 '''when DELETE for /movies/movie_id comes in, we remove just that movie from mdb'''
-                #TODO
+                output = {'result': 'success'}
                 pass
 
         def GET_INDEX(self):
