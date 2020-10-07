@@ -75,5 +75,5 @@ class MovieController(object):
 
         def DELETE_INDEX(self):
                 '''when DELETE for /movies/ comes in, we remove each existing movie from mdb object'''
-                #TODO
-                pass
+                self.mdb.clear()
+                return json.dumps({'result': 'success'})
