@@ -36,7 +36,8 @@ class ResetController(object):
 
             movie = mdbtmp.get_movie(mid)
             
-            self.mdb.set_movie(mid, movie) #TODO remember to reset genre also
+            # sets movie and genre in movies_library.py
+            self.mdb.set_movie(mid, movie)
 
         except Exception as ex:
             output['result'] = 'error'
