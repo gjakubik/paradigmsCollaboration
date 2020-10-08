@@ -4,7 +4,7 @@ import json
 
 class TestMovies(unittest.TestCase):
 
-    SITE_URL = 'http://student04.cse.nd.edu:51068' # replace with your port number and 
+    SITE_URL = 'http://localhost:51068' # replace with your port number and 
     print("testing for server: " + SITE_URL)
     MOVIES_URL = SITE_URL + '/movies/'
     RESET_URL = SITE_URL + '/reset/'
