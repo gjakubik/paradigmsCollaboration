@@ -51,7 +51,7 @@ class MovieController(object):
                 output = {'result': 'success'}
 
                 try:
-                        self.mdb.delete_movie(movie_id)
+                        self.mdb.delete_movie(int(movie_id))
                 except Exception as ex:
                         output['result'] = 'error'
                         output['message'] = str(ex)
@@ -96,5 +96,7 @@ class MovieController(object):
 
         def DELETE_INDEX(self):
                 '''when DELETE for /movies/ comes in, we remove each existing movie from mdb object'''
-                self.mdb.clear()
+                self.mdb.movie_names.clear()
+                self.mdb.movie_genres.clear()
+                self.mdb.movie_ratings.clear()
                 return json.dumps({'result': 'success'})

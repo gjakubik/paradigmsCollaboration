@@ -1,3 +1,8 @@
+###############################
+#Gavin Jakubik (gjakubik@nd.edu)
+#Megan Lulley  (mlulley@nd.edu)
+###############################
+
 import cherrypy
 from moviesController import MovieController
 from resetController import ResetController

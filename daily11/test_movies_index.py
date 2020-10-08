@@ -45,7 +45,7 @@ class TestMoviesIndex(unittest.TestCase):
         self.assertTrue(self.is_json(r.content.decode()))
         resp = json.loads(r.content.decode())
         self.assertEqual(resp['result'], 'success')
-        self.assertEqual(resp['id'], 3953)
+        self.assertEqual(resp['id'], '3884')
 
         r = requests.get(self.MOVIES_URL + str(resp['id']))
         self.assertTrue(self.is_json(r.content.decode()))
